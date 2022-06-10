@@ -2,8 +2,7 @@ package com.flightApp.cts.serviceImpl;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -142,6 +141,7 @@ public class UserServiceImpl implements UserService{
 	public void deleteBooking(Integer bookingId, Integer userId,String flightDepatureDate) {
 		Optional<User> u = userDao.findById(userId);
 		Optional<BookingDetails> bd = bookingDao.findById(bookingId);
+		
 		if (!bd.isPresent()) {
 			throw new UserDoesnotExistException("booking not found");
 		}
@@ -153,12 +153,12 @@ public class UserServiceImpl implements UserService{
 		BookingDetails deleteBooking = null;
 		for (BookingDetails b : bookingList) {
 			if (b.getBookingId() == bookingId) {
-				System.out.println("booking id found");
+				//System.out.println("booking id found");
 				//Optional<FlightDetails> flight = flightDao.findById(b.getFlightNumber());
 				LocalDate today= LocalDate.now();
 				String day=today.toString();
 				String depDate=flightDepatureDate;
-				System.out.println(day+" "+depDate);
+				//System.out.println(day+" "+depDate);
 				//if(flight.get().getDepartureDate()) {}
 				String[] s1=depDate.split("-");
 				String[] s2=day.split("-");
